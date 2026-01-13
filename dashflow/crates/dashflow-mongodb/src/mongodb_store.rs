@@ -54,7 +54,7 @@ struct MongoDocument {
 /// let embeddings: Arc<dyn Embeddings> = Arc::new(MockEmbeddings);
 ///
 /// let mut store = MongoDBVectorStore::new(
-///     "mongodb+srv://user:pass@cluster.mongodb.net",
+///     "mongodb+srv://FAKE_USER:FAKE_PASS@cluster.example.net",
 ///     "my_database",
 ///     "my_collection",
 ///     "vector_index",
@@ -75,7 +75,7 @@ impl MongoDBVectorStore {
     ///
     /// # Arguments
     ///
-    /// * `connection_string` - `MongoDB` connection string (e.g., "<mongodb+srv://user:pass@cluster.mongodb.net>")
+    /// * `connection_string` - `MongoDB` connection string (e.g., "<mongodb+srv://FAKE_USER:FAKE_PASS@cluster.example.net>")
     /// * `database_name` - Name of the database
     /// * `collection_name` - Name of the collection
     /// * `index_name` - Name of the Atlas Search index configured for vector search

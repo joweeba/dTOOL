@@ -41,7 +41,7 @@
 //!
 //! // Create vector store
 //! let mut store = MongoDBVectorStore::new(
-//!     "mongodb+srv://user:pass@cluster.mongodb.net",
+//!     "mongodb+srv://FAKE_USER:FAKE_PASS@cluster.example.net",
 //!     "my_database",
 //!     "my_collection",
 //!     "vector_index", // Atlas Search index name

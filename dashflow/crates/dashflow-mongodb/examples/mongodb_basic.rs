@@ -16,7 +16,7 @@
 //! # Running
 //!
 //! ```bash
-//! export MONGODB_CONNECTION_STRING="mongodb+srv://user:pass@cluster.mongodb.net"
+//! export MONGODB_CONNECTION_STRING="mongodb+srv://FAKE_USER:FAKE_PASS@cluster.example.net"
 //! cargo run --example mongodb_basic
 //! ```
 
