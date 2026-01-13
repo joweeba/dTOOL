@@ -1,0 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+
+# Rust
+target/
+Cargo.lock
+**/*.rs.bk
+.ruff_cache
+
+# C++
+*.o
+*.out
+*.exe
+build/
+
+# Looper runtime files
+worker_logs/
+worker_status.json
+.*_status.json
+worker_heartbeat
+.hint_consuming_*
+.iteration_*
+.pid_*
+HINTS_HISTORY.log
+STOP
+HINT.md
+.background_tasks/
+
+# Pulse runtime artifacts
+metrics/
+.flags/
+
+# Emacs
+*~
+\#*\#
+.#*
+
+# Test/lint output
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+
+# Credentials and secrets
+.env
+.env.*
+*.key
+*.pem
+*.p12
+*.pfx
+credentials.json
+secrets.json
+*_secret*
+*.secret
+.secrets/
+
+# === Project-specific (preserved during sync) ===
+# Add project-specific gitignore entries below this line.
+# They will be preserved when sync_repo.sh updates this file.
+HINT_ACK.md
