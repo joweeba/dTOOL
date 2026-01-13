@@ -802,7 +802,7 @@ mod tests {
         let config = RedactionConfig::disabled();
         let redactor = SensitiveDataRedactor::new(config);
 
-        let input = "user@example.com 555-123-4567 sk-abc123def456";
+        let input = "user@example.com 555-123-4567 sk-FAKE_TEST_0000";
         let output = redactor.redact_string(input);
 
         // Nothing should be redacted

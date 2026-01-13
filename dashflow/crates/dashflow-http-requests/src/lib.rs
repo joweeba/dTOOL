@@ -1245,7 +1245,7 @@ mod tests {
         let json_str = json!({
             "url": "https://api.example.com/test",
             "headers": {
-                "X-API-Key": "sk-1234567890abcdef"
+                "X-API-Key": "sk-FAKE_TEST_KEY_0000"
             }
         })
         .to_string();
@@ -1253,7 +1253,7 @@ mod tests {
         let request: HttpRequest = serde_json::from_str(&json_str).unwrap();
         assert_eq!(
             request.headers.get("X-API-Key").unwrap(),
-            "sk-1234567890abcdef"
+            "sk-FAKE_TEST_KEY_0000"
         );
     }
 

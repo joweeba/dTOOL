@@ -2696,9 +2696,9 @@ mod tests {
     mod http_header_tests {
         #[test]
         fn test_authorization_header_format() {
-            let token = "ghp_xxxxxxxxxxxxxxxxxxxx";
+            let token = "ghp_FAKETOKEN000000000";
             let header = format!("Bearer {}", token);
-            assert_eq!(header, "Bearer ghp_xxxxxxxxxxxxxxxxxxxx");
+            assert_eq!(header, "Bearer ghp_FAKETOKEN000000000");
         }
 
         #[test]
