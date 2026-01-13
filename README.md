@@ -1,10 +1,13 @@
 # dTOOL - Developer Tools
 
+![Status](https://img.shields.io/badge/status-preview-orange)
+![License](https://img.shields.io/badge/license-Apache%202.0-blue)
+
 Developer tools and AI workflow infrastructure from Dropbox.
 
 ## Thesis
 
-The terminal is the natural habitat of AI agents. These tools provide the infrastructure for AI-powered development workflows—from orchestration frameworks to terminal emulators designed for agent interaction.
+**The terminal is where AI belongs.** GUIs are for humans; terminals are for agents. These tools build the infrastructure for AI-native development—workflow orchestration that chains tools like thoughts, terminals that understand context, and coding assistants that work with you in the environment you already live in. Not AI bolted onto IDEs, but AI that thinks in pipes and processes.
 
 ## Projects
 
