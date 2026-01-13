@@ -144,7 +144,7 @@ fn test_persist_trace_redacts_sensitive_data() {
     metadata.insert(
         "api_key".to_string(),
         // 22 chars after sk- to match OpenAI pattern
-        serde_json::json!("sk-abcdefghij1234567890XY"),
+        serde_json::json!("sk-FAKE_TEST_KEY_00000000XY"),
     );
     metadata.insert(
         "user_email".to_string(),
@@ -167,7 +167,7 @@ fn test_persist_trace_redacts_sensitive_data() {
         final_state: Some(serde_json::json!({
             "query": "Contact me at admin@company.org",
             // Another valid OpenAI key (24 chars after sk-)
-            "api_key": "sk-ABCDEFGHIJ0123456789WXYZ"
+            "api_key": "sk-FAKE_TEST_KEY_1111111WXYZ"
         })),
         metadata,
         execution_metrics: None,
@@ -188,11 +188,11 @@ fn test_persist_trace_redacts_sensitive_data() {
 
     // Verify sensitive data was redacted
     assert!(
-        !content.contains("sk-abcdefghij1234567890XY"),
+        !content.contains("sk-FAKE_TEST_KEY_00000000XY"),
         "API key in metadata should be redacted"
     );
     assert!(
-        !content.contains("sk-ABCDEFGHIJ0123456789WXYZ"),
+        !content.contains("sk-FAKE_TEST_KEY_1111111WXYZ"),
         "API key in final_state should be redacted"
     );
     assert!(

@@ -674,7 +674,7 @@ mod tests {
     fn test_aws_key_redaction() {
         let redactor = SensitiveDataRedactor::default();
 
-        let input = "AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE";
+        let input = "AWS_ACCESS_KEY_ID=AKIAFAKETEST00000000";
         let output = redactor.redact_string(input);
         assert!(output.contains("[AWS_ACCESS_KEY]"));
     }
@@ -682,7 +682,8 @@ mod tests {
     #[test]
     fn test_openai_key_redaction() {
         let redactor = SensitiveDataRedactor::default();
-        let input = "OPENAI_API_KEY=sk-abc123def456ghi789jkl012mno345pqr678stu901";
+        // Test pattern designed to trigger redaction without matching GitHub's secret scanner
+        let input = "OPENAI_API_KEY=sk-proj-FAKE_TEST_KEY_aaaaaaaaaaaaaaaaaaaaaaaaa";
         let output = redactor.redact_string(input);
         assert!(output.contains("[OPENAI_KEY]"));
     }
@@ -690,7 +691,8 @@ mod tests {
     #[test]
     fn test_anthropic_key_redaction() {
         let redactor = SensitiveDataRedactor::default();
-        let input = "ANTHROPIC_API_KEY=sk-ant-api03-abc123def456ghi789jkl012mno345pqr678";
+        // Test pattern designed to trigger redaction without matching GitHub's secret scanner
+        let input = "ANTHROPIC_API_KEY=sk-ant-api03-FAKE_TEST_aaaaaaaaaaaaaaaaaaa";
         let output = redactor.redact_string(input);
         assert!(output.contains("[ANTHROPIC_KEY]"));
     }
@@ -700,7 +702,8 @@ mod tests {
         let redactor = SensitiveDataRedactor::default();
         // GitHub tokens have ghp/gho/ghu/ghs/ghr prefix followed by 36+ alphanumeric chars
         // Use "GH_ACCESS" to avoid triggering generic_secret pattern on "TOKEN"
-        let input = "GH_ACCESS=ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"; // 40 x's
+        // Test pattern: ghp_ + 40 chars triggers GitHub token detection
+        let input = "GH_ACCESS=ghp_FAKE0TEST0TOKEN0FOR0UNIT0TESTING000000";
         let output = redactor.redact_string(input);
         assert!(output.contains("[GITHUB_TOKEN]"), "Output was: {}", output);
     }
@@ -723,7 +726,7 @@ mod tests {
                 "email": "john@example.com",
                 "phone": "555-123-4567"
             },
-            "api_key": "sk-abc123def456ghi789jkl012mno345pqr678"
+            "api_key": "sk-FAKE_TEST_KEY_abcdefghi0000000000"
         });
 
         let redacted = redactor.redact_json(&json);

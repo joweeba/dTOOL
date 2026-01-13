@@ -362,7 +362,7 @@ mod tests {
 
     #[test]
     fn test_sanitize_for_logging() {
-        let cmd = "export API_KEY=sk-1234567890abcdefghijklmn";
+        let cmd = "export API_KEY=sk-FAKE_TEST_KEY_000000000000";
         let sanitized = sanitize_for_logging(cmd);
         assert!(!sanitized.contains("sk-1234567890"));
         assert!(sanitized.contains("REDACTED"));
@@ -558,7 +558,8 @@ mod tests {
 
     #[test]
     fn test_sanitize_github_token() {
-        let cmd = "git clone https://ghp_1234567890abcdefghijklmnopqrstuvwxyz@github.com/repo";
+        // Test pattern designed to trigger redaction without matching GitHub's secret scanner
+        let cmd = "git clone https://ghp_FAKE0TEST0TOKEN0FOR0UNIT0TESTING000000@github.com/repo";
         let sanitized = sanitize_for_logging(cmd);
         assert!(sanitized.contains("REDACTED"));
         assert!(!sanitized.contains("ghp_1234567890"));
@@ -566,7 +567,8 @@ mod tests {
 
     #[test]
     fn test_sanitize_aws_key() {
-        let cmd = "export AWS_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE";
+        // AKIA + 16 chars triggers AWS key detection. Using well-known AWS docs example.
+        let cmd = "export AWS_ACCESS_KEY_ID=AKIAFAKETEST00000000";
         let sanitized = sanitize_for_logging(cmd);
         assert!(sanitized.contains("REDACTED"));
     }
@@ -632,7 +634,7 @@ mod tests {
     // Audit #68: Tests for sanitize_tool_output
     #[test]
     fn test_sanitize_tool_output_api_keys() {
-        let output = "Error: api_key=sk-1234567890abcdefghijklmn is invalid";
+        let output = "Error: api_key=sk-FAKE_TEST_KEY_000000000000 is invalid";
         let sanitized = sanitize_tool_output(output);
         assert!(sanitized.contains("REDACTED"));
         assert!(!sanitized.contains("sk-1234567890"));
@@ -686,12 +688,12 @@ mod tests {
 
     #[test]
     fn test_sanitize_tool_output_multiple_secrets() {
-        let output = "Error connecting to 192.168.1.1:443 with token=sk-abcdefghijklmnopqrstuv";
+        let output = "Error connecting to 192.168.1.1:443 with token=sk-FAKE_TEST_KEY_111111111111";
         let sanitized = sanitize_tool_output(output);
         assert!(sanitized.contains("[REDACTED-HOST]"));
         // token=sk-... is matched by the token pattern, redacting the whole value
         assert!(sanitized.contains("[REDACTED]"));
         assert!(!sanitized.contains("192.168.1.1:443"));
-        assert!(!sanitized.contains("sk-abcdefghijklmnopqrstuv"));
+        assert!(!sanitized.contains("sk-FAKE_TEST_KEY_111111111111"));
     }
 }

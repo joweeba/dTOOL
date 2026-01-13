@@ -1204,7 +1204,7 @@ mod tests {
     #[test]
     fn test_truncate_tool_output_sanitizes_sensitive_data() {
         // Audit #68: Verify sensitive data is redacted
-        let output = "Error: Connection failed to 192.168.1.100:8080\nAuth: api_key=sk-1234567890abcdefghijklmn";
+        let output = "Error: Connection failed to 192.168.1.100:8080\nAuth: api_key=sk-FAKE_TEST_KEY_000000000000";
         let result = truncate_tool_output(output.to_string());
 
         // Should redact IP:port

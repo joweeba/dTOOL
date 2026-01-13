@@ -1545,7 +1545,7 @@ mod tests {
     fn test_redact_prometheus_text_openai_key() {
         let input = r#"# HELP my_metric Test metric
 # TYPE my_metric counter
-my_metric{label="sk-abc123def456ghi789jkl012mno345pqr678"} 1
+my_metric{label="sk-FAKE_TEST_KEY_abcdefghi0000000000"} 1
 "#;
         let output = redact_prometheus_text(input);
         assert!(
@@ -1563,7 +1563,7 @@ my_metric{label="sk-abc123def456ghi789jkl012mno345pqr678"} 1
     fn test_redact_prometheus_text_multiple_secrets() {
         let input = r#"# HELP test_metric Test
 # TYPE test_metric gauge
-test_metric{api="sk-test123456789012345678901234567890",email="user@example.com"} 42
+test_metric{api="sk-FAKE_TEST_KEY_22222222222222222222",email="user@example.com"} 42
 "#;
         let output = redact_prometheus_text(input);
         assert!(
@@ -1597,7 +1597,7 @@ test_metric{{token="{}"}} 1
 
     #[test]
     fn test_redact_prometheus_text_preserves_comments() {
-        let input = r#"# HELP my_metric This is a help message with sk-test123456789012345678901234567890
+        let input = r#"# HELP my_metric This is a help message with sk-FAKE_TEST_KEY_22222222222222222222
 # TYPE my_metric counter
 my_metric 1
 "#;
@@ -1659,7 +1659,7 @@ db_conn{url="postgresql://user:secretpassword123@localhost:5432/db"} 1
     #[test]
     fn test_redact_prometheus_text_github_token() {
         let input = r#"# TYPE auth gauge
-auth{token="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1234"} 1
+auth{token="ghp_FAKE0TEST0TOKEN0FOR0UNIT0TESTING000000"} 1
 "#;
         let output = redact_prometheus_text(input);
         assert!(
@@ -1672,7 +1672,7 @@ auth{token="ghp_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx1234"} 1
     #[test]
     fn test_redact_prometheus_text_aws_key() {
         let input = r#"# TYPE aws gauge
-aws{access_key="AKIAIOSFODNN7EXAMPLE"} 1
+aws{access_key="AKIAFAKETEST00000000"} 1
 "#;
         let output = redact_prometheus_text(input);
         assert!(
