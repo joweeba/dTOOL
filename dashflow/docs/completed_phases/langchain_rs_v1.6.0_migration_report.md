@@ -11,7 +11,7 @@
 
 ## Executive Summary
 
-**We attempted to migrate a production-ready RAG system** from dashflow v4.6.0 (monolithic crate) to ayates_dbx v1.6.0 (93-crate workspace).
+**We attempted to migrate a production-ready RAG system** from dashflow v4.6.0 (monolithic crate) to dropbox/dTOOL/dashflow v1.6.0 (93-crate workspace).
 
 **Measured results after 52 migration commits:**
 - Starting errors: 210
@@ -652,7 +652,7 @@ dashflow = "1.6.0"
 
 **If you're an AI working on dashflow to fix this:**
 
-**File locations to check (in ayates_dbx v1.6.0):**
+**File locations to check (in dropbox/dTOOL/dashflow v1.6.0):**
 1. `crates/dashflow-chains/src/` - Find what replaced LLMChainBuilder
 2. `crates/dashflow/src/embeddings/` - Document Embedder trait changes
 3. `crates/dashflow/src/graph/` - Document GraphState → Value change
@@ -679,7 +679,7 @@ dashflow = "1.6.0"
 - Correct v1.6.0 usage examples
 
 **To get complete data:** Another AI would need to:
-1. Check out ayates_dbx v1.6.0
+1. Check out dropbox/dTOOL/dashflow v1.6.0
 2. Read all crate APIs
 3. Document actual structure
 4. Create tested migration guide

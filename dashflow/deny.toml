@@ -93,9 +93,9 @@ unknown-git = "warn"
 # Allow git sources from these organizations
 allow-git = [
     "https://github.com/dashflow-ai",
-    "https://github.com/ayates_dbx",
+    "https://github.com/dropbox",
 ]
 
 [sources.allow-org]
 # Organizations whose crates are always allowed
-github = ["dashflow-ai", "ayates_dbx"]
+github = ["dashflow-ai", "dropbox"]
