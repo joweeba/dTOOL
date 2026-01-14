@@ -5,6 +5,8 @@
 
 Developer tools and AI workflow infrastructure.
 
+*All d* projects are entirely AI generated.*
+
 ## Projects
 
 | Project | Description | Status | License |
